@@ -4,6 +4,7 @@ config EXTERNAL_FREETZ_PACKAGE_NETATALK
 	default n
 	help
 		externals the following file(s)
+		 /sbin/netatalk
 		 /sbin/afpd
 		 /sbin/cnid_dbd
 		 /sbin/metad
