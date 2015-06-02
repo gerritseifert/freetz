@@ -1,21 +1,24 @@
 #!/bin/sh
 
+# Since Netatalk 3 the netatalk daemon is responsible for starting afpd and cnid
+# Therefore only rc.netatalk is necessary instead of 3 separate rc files
+
 DAEMON=netatalk
 DAEMON_LONG_NAME=Netatalk
+DAEMON_BIN=netatalk
+DAEMON_CONFIG=/mod/etc/netatalk/afp.conf
 . /etc/init.d/modlibrc
 
-do_afpd() {
-	/mod/etc/init.d/rc.netatalk.afpd $1
+start() {
+	# TODO how to specify the location of afp.conf?
+	modlib_startdaemon $DAEMON_BIN
+	pidof netatalk >/var/run/$DAEMON_BIN.pid
 }
 
-do_cnid_metad() {
-	/mod/etc/init.d/rc.netatalk.cnid_metad $1
-}
 
 config() {
 	mkdir -p /mod/etc/netatalk
-	/mod/etc/default.netatalk/afpd_conf_conf > /mod/etc/netatalk/afpd.conf
-	/mod/etc/default.netatalk/applevolumes_default_conf > /mod/etc/netatalk/AppleVolumes.default
+	/mod/etc/default.netatalk/afpd_conf_conf > /mod/etc/netatalk/afp.conf
 }
 
 case $1 in
@@ -28,44 +31,31 @@ case $1 in
 		modlib_adduser ftpuser -G users -D -S -h "/var/media/ftp" -g "ftpuser"
 
 		modreg cgi netatalk "Netatalk"
-		modreg file netatalk applevolumes_default '$(lang de:"Freigaben" en:"Shares")' 1 "applevolumes_default"
-		modreg file netatalk afpd_conf '$(lang de:"Virtuelle Datei-Server" en:"Virtual Fileservers")' 1 "afpd_conf"
+		modreg file netatalk afpd_conf '$(lang de:“Konfiguration“ en:“Configuraton“)‘ 1 "afpd_conf"
 		modreg daemon netatalk
 
 		config
-		do_cnid_metad $1
-		do_afpd $1
 		;;
 	unload)
 		modunreg daemon $DAEMON
 		modunreg file netatalk
 		modunreg cgi netatalk
-		do_afpd unload
-		do_cnid_metad unload
+		modlib stop
 		;;
 	start)
-		config
-		do_cnid_metad start
-		do_afpd start
+		modlib_start
 		;;
 	stop)
-		do_afpd stop
-		do_cnid_metad stop
+		modlib_stop
 		;;
 	restart)
-		do_afpd stop
-		do_cnid_metad stop
-		config
-		do_cnid_metad start
-		do_afpd start
+		modlib_restart
 		;;
 	reload)
-		config
-		do_cnid_metad reload
-		do_afpd reload
+		modlib_reload
 		;;
 	status)
-		do_afpd status
+		modlib_status
 		;;
 	config)
 		config
