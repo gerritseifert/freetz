@@ -19,7 +19,7 @@ sec_begin '$(lang de:"Einstellungen" en:"Settings")'
 
 cat << EOF
 <ul>
-<li><a href='$(href file netatalk afp_conf)'>$(lang de:“Netatalk 3 Konfiguration“ en:“Netatalk 3 config“) (afp.conf)</a></li>
+<li><a href='$(href file netatalk afp_conf)'>$(lang de:"Netatalk 3 Konfiguration" en:"Netatalk 3 config") (afp.conf)</a></li>
 </ul>
 EOF
 
