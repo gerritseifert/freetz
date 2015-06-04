@@ -48,6 +48,10 @@ ifeq ($(strip $(FREETZ_PACKAGE_NETATALK_DHX2)),y)
 $(PKG)_DEPENDS_ON += libgcrypt
 endif
 
+# should be necessary for extended attribute storage of AppleDouble contents
+# TODO is not automatically selected in menuconfig, does not compile => skip it for now
+#$(PKG)_DEPENDS_ON +=libattr
+
 $(PKG)_REBUILD_SUBOPTS += FREETZ_PACKAGE_NETATALK_ENABLE_ZEROCONF
 $(PKG)_REBUILD_SUBOPTS += FREETZ_PACKAGE_NETATALK_DHX
 $(PKG)_REBUILD_SUBOPTS += FREETZ_PACKAGE_NETATALK_DHX2

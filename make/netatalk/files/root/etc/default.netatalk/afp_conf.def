@@ -2,7 +2,7 @@ CAPTION='Netatalk: $(lang de:"Netatalk 3 Konfiguration" en:"Netatalk 3 config")'
 DESCRIPTION='<a href="http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html" target="_blank">$(lang de:"Syntax siehe Dokumentation von afp.conf" en:"Syntax see documentation of afp.conf")</a><br><br>
 
 
-CONFIG_FILE='/tmp/flash/netatalk/afpd_conf'
+CONFIG_FILE='/tmp/flash/netatalk/afp_conf'
 CONFIG_SAVE='modsave flash; if pidof afpd > /dev/null; then echo ""; /mod/etc/init.d/rc.netatalk restart; fi'
 CONFIG_TYPE='text'
 

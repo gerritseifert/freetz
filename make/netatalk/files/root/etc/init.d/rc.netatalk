@@ -18,7 +18,7 @@ start() {
 
 config() {
 	mkdir -p /mod/etc/netatalk
-	/mod/etc/default.netatalk/afpd_conf_conf > /mod/etc/netatalk/afp.conf
+	/mod/etc/default.netatalk/afp_conf_conf > $DAEMON_CONFIG
 }
 
 case $1 in
@@ -31,7 +31,7 @@ case $1 in
 		modlib_adduser ftpuser -G users -D -S -h "/var/media/ftp" -g "ftpuser"
 
 		modreg cgi netatalk "Netatalk"
-		modreg file netatalk afpd_conf '$(lang de:“Konfiguration“ en:“Configuraton“)‘ 1 "afpd_conf"
+		modreg file netatalk afp_conf '$(lang de:“Konfiguration“ en:“Configuraton“)‘ 1 "afp_conf"
 		modreg daemon netatalk
 
 		config
