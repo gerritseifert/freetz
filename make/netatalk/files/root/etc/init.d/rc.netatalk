@@ -11,7 +11,7 @@ DAEMON_CONFIG=/mod/etc/netatalk/afp.conf
 
 start() {
 	# TODO how to specify the location of afp.conf?
-	modlib_startdaemon $DAEMON_BIN
+	modlib_startdaemon $DAEMON_BIN -F $DAEMON_CONFIG
 	pidof netatalk >/var/run/$DAEMON_BIN.pid
 }
 
