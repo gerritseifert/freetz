@@ -5,6 +5,7 @@ default
 files
 {
 	etc/default.netatalk/afp_conf.def
+	etc/default.netatalk/extmap_conf.def
 	etc/init.d/rc.netatalk
 	usr/lib/cgi-bin/netatalk.cgi
 }

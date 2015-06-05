@@ -6,7 +6,8 @@
 DAEMON=netatalk
 DAEMON_LONG_NAME=Netatalk
 DAEMON_BIN=netatalk
-DAEMON_CONFIG=/mod/etc/afp.conf
+DAEMON_CONFIG=/mod/etc/netatalk/afp.conf
+EXTMAP_CONFIG=/mod/etc/netatalk/extmap.conf
 . /etc/init.d/modlibrc
 
 start() {
@@ -19,6 +20,7 @@ start() {
 config() {
 	mkdir -p /mod/etc/netatalk
 	/mod/etc/default.netatalk/afp_conf_conf > $DAEMON_CONFIG
+	/mod/etc/default.netatalk/extmap_conf_conf > $EXTMAP_CONFIG
 }
 
 case $1 in
@@ -33,6 +35,7 @@ case $1 in
 
 		modreg cgi netatalk "Netatalk"
 		modreg file netatalk afp_conf '$(lang de:"Konfiguration" en:"Configuraton")' 1 "afp_conf"
+		modreg file netatalk extmap_conf '$(lang de:"Dateiendungen" en:"File Extensions")' 1 "extmap_conf"
 		modreg daemon netatalk
 
 		config

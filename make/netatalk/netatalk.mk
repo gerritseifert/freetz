@@ -49,7 +49,7 @@ $(PKG)_DEPENDS_ON += libgcrypt
 endif
 
 # should be necessary for extended attribute storage of AppleDouble contents
-# TODO is not automatically selected in menuconfig, does not compile => skip it for now
+# does not seem to be required for compiling the package
 #$(PKG)_DEPENDS_ON +=libattr
 
 $(PKG)_REBUILD_SUBOPTS += FREETZ_PACKAGE_NETATALK_ENABLE_ZEROCONF
@@ -80,12 +80,12 @@ $(PKG)_CONFIGURE_OPTIONS += --with-uams-path="$(FREETZ_LIBRARY_PATH)"
 $(PKG)_CONFIGURE_OPTIONS += --with-bdb="$(TARGET_TOOLCHAIN_STAGING_DIR)/usr"
 $(PKG)_CONFIGURE_OPTIONS += --with-libgcrypt-dir=$(if $(FREETZ_PACKAGE_NETATALK_DHX2),"$(TARGET_TOOLCHAIN_STAGING_DIR)/usr",no)
 $(PKG)_CONFIGURE_OPTIONS += --with-ssl-dir=$(if $(FREETZ_PACKAGE_NETATALK_DHX),"$(TARGET_TOOLCHAIN_STAGING_DIR)/usr",no)
-$(PKG)_CONFIGURE_OPTIONS += --sysconfdir="/mod/etc"
+$(PKG)_CONFIGURE_OPTIONS += --sysconfdir="/mod/etc/netatalk"
 $(PKG)_CONFIGURE_OPTIONS += --bindir="/bin"
 $(PKG)_CONFIGURE_OPTIONS += --sbindir="/sbin"
 
 $(PKG)_CONFIGURE_OPTIONS += --disable-debugging
-$(PKG)_CONFIGURE_OPTIONS += --enable-debug
+#$(PKG)_CONFIGURE_OPTIONS += --enable-debug
 
 $(PKG_SOURCE_DOWNLOAD)
 $(PKG_UNPACKED)
