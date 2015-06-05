@@ -10,17 +10,16 @@ DAEMON_CONFIG=/mod/etc/netatalk/afp.conf
 EXTMAP_CONFIG=/mod/etc/netatalk/extmap.conf
 . /etc/init.d/modlibrc
 
-start() {
-	# TODO how to specify the location of afp.conf?
-	modlib_startdaemon $DAEMON_BIN -F $DAEMON_CONFIG
-	pidof netatalk > /var/run/$DAEMON_BIN.pid
+config() {
+        mkdir -p /mod/etc/netatalk
+        /mod/etc/default.netatalk/afp_conf_conf > $DAEMON_CONFIG
+        /mod/etc/default.netatalk/extmap_conf_conf > $EXTMAP_CONFIG
 }
 
-
-config() {
-	mkdir -p /mod/etc/netatalk
-	/mod/etc/default.netatalk/afp_conf_conf > $DAEMON_CONFIG
-	/mod/etc/default.netatalk/extmap_conf_conf > $EXTMAP_CONFIG
+start() {
+	config
+	modlib_startdaemon $DAEMON_BIN -F $DAEMON_CONFIG
+	pidof netatalk > /var/run/$DAEMON_BIN.pid
 }
 
 case $1 in
@@ -53,7 +52,8 @@ case $1 in
 		modlib_stop
 		;;
 	restart)
-		modlib_restart
+		modlib_stop
+		modlib_start
 		;;
 	reload)
 		modlib_reload
