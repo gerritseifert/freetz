@@ -4,8 +4,11 @@
 # mimic model = TimeCapsule6,106
 # log level = default:note
 
-#create a writeable directory for the CNID database on external media
+# create a writeable directory for the CNID database on external media
 # vol dbpath = /var/media/ftp/uStor00/CNID
+
+# authentication methods (uams_dhx2.so is more secure but much slower, remove it for faster login)
+# uam list = uams_dhx.so uams_dhx2.so
 
 #[TimeMachine]
 # path = /var/media/ftp/uStor00/timemachine
