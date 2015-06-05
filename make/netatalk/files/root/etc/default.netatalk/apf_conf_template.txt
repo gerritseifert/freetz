@@ -1,0 +1,17 @@
+# afp.conf example configuration
+
+#[Global]
+# mimic model = TimeCapsule6,106
+# log level = default:note
+
+#create a writeable directory for the CNID database on external media
+# vol dbpath = /var/media/ftp/uStor00/CNID
+
+#[TimeMachine]
+# path = /var/media/ftp/uStor00/timemachine
+# valid users = tmuser
+# time machine = yes
+
+#[Shared Media]
+# path = /var/media/ftp/uStor00/testdir
+# valid users = joe
