@@ -6,13 +6,13 @@
 DAEMON=netatalk
 DAEMON_LONG_NAME=Netatalk
 DAEMON_BIN=netatalk
-DAEMON_CONFIG=/mod/etc/netatalk/afp.conf
+DAEMON_CONFIG=/mod/etc/afp.conf
 . /etc/init.d/modlibrc
 
 start() {
 	# TODO how to specify the location of afp.conf?
 	modlib_startdaemon $DAEMON_BIN -F $DAEMON_CONFIG
-	pidof netatalk >/var/run/$DAEMON_BIN.pid
+	pidof netatalk > /var/run/$DAEMON_BIN.pid
 }
 
 
@@ -26,6 +26,7 @@ case $1 in
 		mkdir -p /mod/etc/netatalk
 		mkdir -p /tmp/flash/netatalk
 		mkdir -p /var/run
+		mkdir -p /var/netatalk
 
 		modlib_addgroup users
 		modlib_adduser ftpuser -G users -D -S -h "/var/media/ftp" -g "ftpuser"
