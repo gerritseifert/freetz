@@ -3,7 +3,7 @@ DESCRIPTION='<a href="http://netatalk.sourceforge.net/3.1/htmldocs/extmap.conf.5
 
 if [ ! -e "/tmp/flash/netatalk/extmap_conf" ]
 then
-        cat cat /mod/etc/default.netatalk/extmap_conf_template.txt > /tmp/flash/netatalk/extmap_conf
+        cat /mod/etc/default.netatalk/extmap_conf_template.txt > /tmp/flash/netatalk/extmap_conf
 fi
 
 CONFIG_FILE='/tmp/flash/netatalk/extmap_conf'
