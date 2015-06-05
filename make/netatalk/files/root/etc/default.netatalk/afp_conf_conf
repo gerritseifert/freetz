@@ -4,6 +4,4 @@
 if [ -s "/tmp/flash/netatalk/afp_conf" ]
 then
 	cat /tmp/flash/netatalk/afp_conf
-else
-	cat /mod/etc/default.netatalk/apf_conf_template.txt
 fi

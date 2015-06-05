@@ -1,0 +1,2 @@
+# extmap.conf example entry
+#.jpg "JPEG" "joe"
