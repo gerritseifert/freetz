@@ -81,7 +81,11 @@ $(PKG)_CONFIGURE_OPTIONS += --with-bdb="$(TARGET_TOOLCHAIN_STAGING_DIR)/usr"
 $(PKG)_CONFIGURE_OPTIONS += --with-libgcrypt-dir=$(if $(FREETZ_PACKAGE_NETATALK_DHX2),"$(TARGET_TOOLCHAIN_STAGING_DIR)/usr",no)
 $(PKG)_CONFIGURE_OPTIONS += --with-ssl-dir=$(if $(FREETZ_PACKAGE_NETATALK_DHX),"$(TARGET_TOOLCHAIN_STAGING_DIR)/usr",no)
 $(PKG)_CONFIGURE_OPTIONS += --sysconfdir="/mod/etc"
+$(PKG)_CONFIGURE_OPTIONS += --bindir="/bin"
+$(PKG)_CONFIGURE_OPTIONS += --sbindir="/sbin"
+
 $(PKG)_CONFIGURE_OPTIONS += --disable-debugging
+$(PKG)_CONFIGURE_OPTIONS += --enable-debug
 
 $(PKG_SOURCE_DOWNLOAD)
 $(PKG_UNPACKED)
