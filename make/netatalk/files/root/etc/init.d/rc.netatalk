@@ -37,7 +37,7 @@ case $1 in
 		modreg file netatalk extmap_conf '$(lang de:"Dateiendungen" en:"File Extensions")' 1 "extmap_conf"
 		modreg daemon netatalk
 
-		config
+		modlib_start $NETATALK_ENABLED
 		;;
 	unload)
 		modunreg daemon $DAEMON
@@ -56,6 +56,7 @@ case $1 in
 		modlib_start
 		;;
 	reload)
+		config
 		modlib_reload
 		;;
 	status)
